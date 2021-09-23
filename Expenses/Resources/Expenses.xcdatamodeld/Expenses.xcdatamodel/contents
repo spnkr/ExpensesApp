@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19206" systemVersion="20G95" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Expense" representedClassName="Expense" syncable="YES">
+        <attribute name="amount" attributeType="Decimal" defaultValueString="0.0"/>
+        <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ExpenseCategory" inverseName="expenses" inverseEntity="ExpenseCategory"/>
+    </entity>
+    <entity name="ExpenseCategory" representedClassName="ExpenseCategory" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="expenses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Expense" inverseName="category" inverseEntity="Expense"/>
+        <fetchIndex name="byName">
+            <fetchIndexElement property="name" type="Binary" order="ascending"/>
+        </fetchIndex>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="name"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <elements>
+        <element name="Expense" positionX="-45" positionY="0" width="128" height="89"/>
+        <element name="ExpenseCategory" positionX="-18" positionY="27" width="128" height="59"/>
+    </elements>
+</model>
